@@ -1,5 +1,4 @@
-﻿
-namespace Lab3 {
+﻿namespace Lab3 {
 
 public class Lab3 {
     public static async Task Main(string[] args) {
@@ -10,7 +9,7 @@ public class Lab3 {
             await Task.Delay(settings.MsPerTick);
         }
     }
-    static  void Print(Settings s) {
+    static void Print(Settings s) {
         string str = "";
         for(int i= s.Floors; i >= 0; --i) {
             str += "|";
@@ -152,6 +151,7 @@ public static class Help {
                     l.state.CalledOnFloors.Add(h.DestinationFloor);
                 }
             }
+	    s.LiftSettings.OrderBy(l => l.TicksToGetToFloor(h.OriginFloor)).ThenBy(l => l.settings.Cappacity).First().state.CalledOnFloors.Add(h.OriginFloor);
         }
     }
     public static (LiftSettings, LiftState) Tick(this (LiftSettings set, LiftState st) s) {
