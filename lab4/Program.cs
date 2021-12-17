@@ -166,7 +166,7 @@ public static class Help {
                 HumansInLift = tt > 0 ? hil : hil.Where(h => h.DestinationFloor != lf).ToList(),
                 TimeOpen = le == LiftEnum.Holding ? (to + 1) : 0,
                 LastFloor = le == LiftEnum.Moving && tt + 1 == tpf ? lf + dir : lf,
-                CalledOnFloors = tt == 0 ? cof : cof.Where(f => f != lf).ToHashSet(),
+                CalledOnFloors = le == LiftEnum.Holding ? cof : cof.Where(f => f != lf).ToHashSet(),
                 State = le == LiftEnum.Holding && (to + 1) == tsof ? LiftEnum.Moving :
                     le == LiftEnum.Moving && (tt + 1) == tpf && cof.Contains(lf + dir) ? LiftEnum.Holding :
                     dir == 0 ? LiftEnum.Holding : le
