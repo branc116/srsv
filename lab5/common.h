@@ -14,12 +14,11 @@
 #define MAX_VELICINA_PORUKE 64
 typedef struct mq_attr mq_attr_t;
 
-#define TICKS_PER_SECOND 10000000
+#define TICKS_PER_SECOND 1000000000
 
 void my_sleep(int seconds)
 {
-    for (volatile int i = 0; i < TICKS_PER_SECOND * seconds; ++i)
-        ;
+    for (volatile int i = 0; i < TICKS_PER_SECOND * seconds; ++i);
 }
 
 typedef struct
